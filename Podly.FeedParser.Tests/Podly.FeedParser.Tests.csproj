@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BD45F191-799A-464D-8391-6CDBCDBC9115}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Podly.FeedParser.Tests</RootNamespace>
+    <AssemblyName>Podly.FeedParser.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Batch Build|AnyCPU'">
+    <OutputPath>bin\Batch Build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ApprovalTests, Version=3.0.0.0, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ApprovalTests.3.0.8\lib\net40\ApprovalTests.dll</HintPath>
+    </Reference>
+    <Reference Include="ApprovalUtilities, Version=3.0.0.0, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ApprovalUtilities.3.0.8\lib\net45\ApprovalUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="ApprovalUtilities.Net45">
+      <HintPath>..\packages\ApprovalUtilities.3.0.8\lib\net45\ApprovalUtilities.Net45.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.Mocks.2.6.4\lib\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AsyncTests\AsyncFileSysFeedFactoryTests.cs" />
+    <Compile Include="AsyncTests\AsyncHttpFeedFactoryTests.cs" />
+    <Compile Include="AsyncTests\AsyncMissingFileSysFeedFactoryTest.cs" />
+    <Compile Include="AsyncTests\AsyncMissingHttpFeedFactoryTests.cs" />
+    <Compile Include="BaseMultiTestCase.cs" />
+    <Compile Include="Extensions\PodlyObjectToString.cs" />
+    <Compile Include="FeedFactory\BaseFeedFactoryTests.cs" />
+    <Compile Include="FeedFactory\Missing\BaseMissingFeedFactoryTest.cs" />
+    <Compile Include="FeedFactory\Missing\FileSys\MissingFileSysFeedFactoryTests.cs" />
+    <Compile Include="FeedFactory\Missing\Http\MissingHttpFeedFactoryTests.cs" />
+    <Compile Include="FeedFactory\Valid\FileSys\FileFeedFactoryTestsAtom.cs" />
+    <Compile Include="FeedFactory\Valid\FileSys\FileFeedFactoryTestsRss.cs" />
+    <Compile Include="FeedFactory\Valid\Http\HttpFeedFactoryTestsAtom.cs" />
+    <Compile Include="FeedFactory\Valid\Http\HttpFeedFactoryTestsRss.cs" />
+    <Compile Include="KnownValueTestContainers.cs" />
+    <Compile Include="Meta-Tests\TestKnownValueLoader.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\FeedSerializationTests.cs" />
+    <Compile Include="SyndicationFeed\BaseSyndicationFeedTest.cs" />
+    <Compile Include="KnownValueTestLoader.cs" />
+    <Compile Include="SyndicationFeed\Valid\AtomApprovalTest.cs" />
+    <Compile Include="SyndicationFeed\Valid\AtomFeedTest.cs" />
+    <Compile Include="SyndicationFeed\BaseKnownValueTest.cs" />
+    <Compile Include="SyndicationFeed\Valid\AtomKnownValuesTests.cs" />
+    <Compile Include="SyndicationFeed\Valid\RssApprovalTest.cs" />
+    <Compile Include="SyndicationFeed\Valid\RssFeedTest.cs" />
+    <Compile Include="SyndicationFeed\Valid\RssKnownValuesTests.cs" />
+    <Compile Include="TestFileLoader.cs" />
+    <Compile Include="Meta-Tests\TestFileTester.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Test Files\Missing\FileSys\MissingFiles.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Test Files\Missing\HTTP\MissingURLs.xml" />
+    <Content Include="Test Files\Valid\FileSys\Atom\GoogleNews-Atom.xml" />
+    <Content Include="Test Files\Valid\FileSys\Atom\ScottGu-Atom.xml" />
+    <Content Include="Test Files\Valid\FileSys\Atom\Ted-Atom.xml" />
+    <Content Include="Test Files\Valid\FileSys\Atom\YouTube-Atom.xml" />
+    <Content Include="Test Files\Valid\FileSys\RSS\Aaronontheweb-RSS.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Test Files\Valid\FileSys\RSS\del.icio.us-RSS.xml" />
+    <Content Include="Test Files\Valid\FileSys\RSS\HackerNews-RSS.xml" />
+    <Content Include="Test Files\Valid\FileSys\RSS\TechCrunch-RSS.xml" />
+    <Content Include="Test Files\Valid\HTTP\Atom.xml" />
+    <Content Include="Test Files\Valid\HTTP\RSS.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Test Files\Invalid\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Podly.FeedParser\Podly.FeedParser.csproj">
+      <Project>{9276ec71-7dca-4aaf-a4c2-f0b42964f4ed}</Project>
+      <Name>Podly.FeedParser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
