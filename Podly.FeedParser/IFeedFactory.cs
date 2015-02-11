@@ -45,8 +45,9 @@ namespace Podly.FeedParser
         /// <param name="feeduri">The Uri of the syndication feed to parse.</param>
         /// <param name="feedtype">The type of feed.</param>
         /// <param name="feedxml">The xml content of the feed.</param>
+        /// <param name="maxItems">The maximum number of items to parse</param>
         /// <returns>A new ISyndicationFeed object of [feedtype].</returns>
-        IFeed CreateFeed(Uri feeduri, FeedType feedtype, string feedxml);
+        IFeed CreateFeed(Uri feeduri, FeedType feedtype, string feedxml, int maxItems = 9999);
 
         /// <summary>
         /// Asynchronous operation to begin creating a new feed from a source Uri.

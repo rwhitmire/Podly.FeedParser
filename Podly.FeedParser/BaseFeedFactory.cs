@@ -66,6 +66,16 @@ namespace Podly.FeedParser
 
         }
 
+
+
+        public IFeed CreateFeed(Uri feeduri, int maxItems)
+        {
+            var feedxml = this.DownloadXml(feeduri);
+            var feedtype = this.CheckFeedType(feedxml);
+            return this.CreateFeed(feeduri, feedtype, feedxml, maxItems);
+
+        }
+
         public IFeed CreateFeed(Uri feeduri, FeedType feedtype)
         {
 #if FRAMEWORK
@@ -81,8 +91,7 @@ namespace Podly.FeedParser
         }
 
 
-
-        public IFeed CreateFeed(Uri feeduri, FeedType feedtype, string feedxml)
+        public IFeed CreateFeed(Uri feeduri, FeedType feedtype, string feedxml, int maxItems = 9999)
         {
             try
             {
@@ -98,7 +107,7 @@ namespace Podly.FeedParser
 
                 try
                 {
-                    _parser.ParseFeed(returnFeed, feedxml);
+                    _parser.ParseFeed(returnFeed, feedxml, maxItems);
                 }
                 catch (System.Xml.XmlException ex)
                 {

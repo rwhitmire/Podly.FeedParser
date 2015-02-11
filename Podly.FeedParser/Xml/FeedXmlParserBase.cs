@@ -4,7 +4,7 @@ namespace Podly.FeedParser.Xml
 {
     public abstract class FeedXmlParserBase : IFeedXmlParser
     {
-        public abstract void ParseFeed(IFeed feed, string xml);
+        public abstract void ParseFeed(IFeed feed, string xml, int maxItems = 9999);
         public abstract FeedType CheckFeedType(string xml);
 
         public const string AtomRootElementName = "feed";

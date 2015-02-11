@@ -7,19 +7,19 @@ namespace Podly.FeedParser.Xml
     {
         #region IFeedXmlParser Members
 
-        public override void ParseFeed(IFeed feed, string xml)
+        public override void ParseFeed(IFeed feed, string xml, int maxItems = 9999)
         {
             switch (feed.FeedType)
             {
                 case FeedType.Rss20:
                     var rssFeed = feed as Rss20Feed;
                     ParseRss20Header(rssFeed, xml);
-                    ParseRss20Items(rssFeed, xml);
+                    ParseRss20Items(rssFeed, xml, maxItems);
                     break;
                 case FeedType.Atom10:
                     var atomFeed = feed as Atom10Feed;
                     ParseAtom10Header(atomFeed, xml);
-                    ParseAtom10Items(atomFeed, xml);
+                    ParseAtom10Items(atomFeed, xml, maxItems);
                     break;
             }
         }
@@ -71,14 +71,20 @@ namespace Podly.FeedParser.Xml
             atomFeed.Generator = generatorNode == null ? string.Empty : generatorNode.InnerText;
         }
 
-        private void ParseAtom10Items(IFeed feed, string xml)
+        private void ParseAtom10Items(IFeed feed, string xml, int maxItems)
         {
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(xml);
             var feedItemNodes = xmlDoc.SelectNodes("/atom:feed/atom:entry", NsManager);
+
+            var itemsParsed = 0;
+
             foreach(XmlNode node in feedItemNodes)
             {
+                if (itemsParsed > maxItems) break;
+
                 feed.Items.Add(ParseAtom10SingleItem(node));
+                itemsParsed++;
             }
         }
 
@@ -150,14 +156,20 @@ namespace Podly.FeedParser.Xml
             rssFeed.Language = languageNode == null ? string.Empty : languageNode.InnerText;
         }
 
-        private void ParseRss20Items(IFeed feed, string xml)
+        private void ParseRss20Items(IFeed feed, string xml, int maxItems)
         {
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(xml);
             var feedItemNodes = xmlDoc.SelectNodes("/rss/channel/item");
+
+            var itemsParsed = 0;
+
             foreach (XmlNode item in feedItemNodes)
             {
+                if (itemsParsed > maxItems) break;
+
                 feed.Items.Add(ParseRss20SingleItem(item));
+                itemsParsed ++;
             }
         }
 

@@ -8,19 +8,19 @@ namespace Podly.FeedParser.Xml
     {
         #region Overrides of FeedXmlParserBase
 
-        public override void ParseFeed(IFeed feed, string xml)
+        public override void ParseFeed(IFeed feed, string xml, int maxItems = 9999)
         {
             switch (feed.FeedType)
             {
                 case FeedType.Rss20:
                     var rssFeed = feed as Rss20Feed;
                     ParseRss20Header(rssFeed, xml);
-                    ParseRss20Items(rssFeed, xml);
+                    ParseRss20Items(rssFeed, xml, maxItems);
                     break;
                 case FeedType.Atom10:
                     var atomFeed = feed as Atom10Feed;
                     ParseAtom10Header(atomFeed, xml);
-                    ParseAtom10Items(atomFeed, xml);
+                    ParseAtom10Items(atomFeed, xml, maxItems);
                     break;
             }
         }
@@ -80,10 +80,10 @@ namespace Podly.FeedParser.Xml
 
         }
 
-        private void ParseAtom10Items(Atom10Feed atomFeed, string xml)
+        private void ParseAtom10Items(Atom10Feed atomFeed, string xml, int maxItems)
         {
             var document = XDocument.Parse(xml);
-            var feedItemNodes = document.Root.Elements(Atom10Namespace + "entry");
+            var feedItemNodes = document.Root.Elements(Atom10Namespace + "entry").Take(maxItems);
             foreach (var item in feedItemNodes)
             {
                 atomFeed.Items.Add(ParseAtom10SingleItem(item));
@@ -163,10 +163,10 @@ namespace Podly.FeedParser.Xml
             rssFeed.Language = languageNode == null ? string.Empty : languageNode.Value;
         }
 
-        private void ParseRss20Items(Rss20Feed rssFeed, string xml)
+        private void ParseRss20Items(Rss20Feed rssFeed, string xml, int maxItems)
         {
             var document = XDocument.Parse(xml);
-            var feedItemNodes = document.Root.Element("channel").Elements("item");
+            var feedItemNodes = document.Root.Element("channel").Elements("item").Take(maxItems);
             foreach (var item in feedItemNodes)
             {
                 rssFeed.Items.Add(ParseRss20SingleItem(item));

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Podly.FeedParser</id>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <title>Podly.FeedParser</title>
     <authors>Ryan Whitmire</authors>
     <owners>Ryan Whitmire</owners>
